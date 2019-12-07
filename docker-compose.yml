@@ -1,6 +1,6 @@
 version: '3.2'
 services:
-    betterreads-backend:
+    api:
         build:
             context: .
             dockerfile: web.Dockerfile
@@ -11,7 +11,9 @@ services:
         environment:
             - ENV="development"
         restart: on-failure
-    postgres:
+        depends_on:
+            - "db"
+    db:
         image: "postgres"
         environment:
             # Temporary, for local development
