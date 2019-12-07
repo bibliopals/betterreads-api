@@ -1,6 +1,6 @@
 # 📖 BetterReads API
 
-This is the API for ***BetterReads*** (to be renamed, presumably 🙂). It is written in Swift based on the [Vapor] framework.
+This is the API for **BetterReads** (to be renamed, presumably 🙂). It is written in Swift based on the [Vapor] framework.
 
 ## Developer Setup
 
