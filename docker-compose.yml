@@ -1,0 +1,21 @@
+version: '3.2'
+services:
+    betterreads-backend:
+        build:
+            context: .
+            dockerfile: web.Dockerfile
+            args:
+                - env=docker
+        ports:
+            - 8080:8080
+        environment:
+            - ENV="development"
+        restart: on-failure
+    postgres:
+        image: "postgres"
+        environment:
+            # Temporary, for local development
+            - POSTGRES_USER=postgres
+            - POSTGRES_DB=postgres
+        ports:
+            - 5432:5432
