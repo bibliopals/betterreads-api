@@ -13,7 +13,7 @@ final class BookController {
     /// Return a list of all books
     func index(_ req: Request) throws -> Future<[Book]> {
         // TODO: this should be paginated :)
-        return Book.query(on: req).all()
+        Book.query(on: req).all()
     }
 
     /// Return details for an individual book, requested by ISBN

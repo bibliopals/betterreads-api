@@ -23,14 +23,14 @@ final class Todo: PostgreSQLModel {
 extension Todo {
     /// Fluent relation to user that owns this todo.
     var user: Parent<Todo, User> {
-        return parent(\.userID)
+        parent(\.userID)
     }
 }
 
 /// Allows `Todo` to be used as a Fluent migration.
 extension Todo: Migration {
     static func prepare(on conn: PostgreSQLConnection) -> Future<Void> {
-        return PostgreSQLDatabase.create(Todo.self, on: conn) { builder in
+        PostgreSQLDatabase.create(Todo.self, on: conn) { builder in
             builder.field(for: \.id, isIdentifier: true)
             builder.field(for: \.title)
             builder.field(for: \.userID)

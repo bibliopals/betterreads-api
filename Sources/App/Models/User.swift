@@ -30,12 +30,12 @@ final class User: PostgreSQLModel {
 extension User: PasswordAuthenticatable {
     /// See `PasswordAuthenticatable`.
     static var usernameKey: WritableKeyPath<User, String> {
-        return \.email
+        \.email
     }
 
     /// See `PasswordAuthenticatable`.
     static var passwordKey: WritableKeyPath<User, String> {
-        return \.passwordHash
+        \.passwordHash
     }
 }
 
@@ -49,7 +49,7 @@ extension User: TokenAuthenticatable {
 extension User: Migration {
     /// See `Migration`.
     static func prepare(on conn: PostgreSQLConnection) -> Future<Void> {
-        return PostgreSQLDatabase.create(User.self, on: conn) { builder in
+        PostgreSQLDatabase.create(User.self, on: conn) { builder in
             builder.field(for: \.id, isIdentifier: true)
             builder.field(for: \.name)
             builder.field(for: \.email)

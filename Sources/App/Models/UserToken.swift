@@ -15,7 +15,7 @@ final class UserToken: PostgreSQLModel {
     }
 
     /// See `Model`.
-    static var deletedAtKey: TimestampKey? { return \.expiresAt }
+    static var deletedAtKey: TimestampKey? { \.expiresAt }
 
     /// UserToken's unique identifier.
     var id: Int?
@@ -42,7 +42,7 @@ final class UserToken: PostgreSQLModel {
 extension UserToken {
     /// Fluent relation to the user that owns this token.
     var user: Parent<UserToken, User> {
-        return parent(\.userID)
+        parent(\.userID)
     }
 }
 
@@ -53,12 +53,12 @@ extension UserToken: Token {
 
     /// See `Token`.
     static var tokenKey: WritableKeyPath<UserToken, String> {
-        return \.string
+        \.string
     }
 
     /// See `Token`.
     static var userIDKey: WritableKeyPath<UserToken, User.ID> {
-        return \.userID
+        \.userID
     }
 }
 
@@ -66,7 +66,7 @@ extension UserToken: Token {
 extension UserToken: Migration {
     /// See `Migration`.
     static func prepare(on conn: PostgreSQLConnection) -> Future<Void> {
-        return PostgreSQLDatabase.create(UserToken.self, on: conn) { builder in
+        PostgreSQLDatabase.create(UserToken.self, on: conn) { builder in
             builder.field(for: \.id, isIdentifier: true)
             builder.field(for: \.string)
             builder.field(for: \.userID)
