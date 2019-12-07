@@ -22,15 +22,17 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     
     // Configure the connection to the psql database
     let psql = try PostgreSQLDatabase(config: {
-        switch env {
-        case .development: return try PostgreSQLDatabaseConfig.default()
-        case .production:
+        if env == .development {
+            return try PostgreSQLDatabaseConfig.default()
+        } else if env == .production {
             // TODO
             return try PostgreSQLDatabaseConfig.default()
-        case .testing:
+        } else if env == .testing {
             // TODO
             return try PostgreSQLDatabaseConfig.default()
-        default:
+        } else if env == .custom(name: "docker") {
+            return PostgreSQLDatabaseConfig(hostname: "db", username: "postgres")
+        } else {
             assert(false, "Unknown environment")
             return try PostgreSQLDatabaseConfig.default()
         }
