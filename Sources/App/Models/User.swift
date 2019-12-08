@@ -29,14 +29,10 @@ final class User: PostgreSQLModel {
 /// Allows users to be verified by basic / password auth middleware.
 extension User: PasswordAuthenticatable {
     /// See `PasswordAuthenticatable`.
-    static var usernameKey: WritableKeyPath<User, String> {
-        \.email
-    }
+    static var usernameKey: WritableKeyPath<User, String> { \.email }
 
     /// See `PasswordAuthenticatable`.
-    static var passwordKey: WritableKeyPath<User, String> {
-        \.passwordHash
-    }
+    static var passwordKey: WritableKeyPath<User, String> { \.passwordHash }
 }
 
 /// Allows users to be verified by bearer / token auth middleware.

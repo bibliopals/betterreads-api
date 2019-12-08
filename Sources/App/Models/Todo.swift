@@ -22,9 +22,7 @@ final class Todo: PostgreSQLModel {
 
 extension Todo {
     /// Fluent relation to user that owns this todo.
-    var user: Parent<Todo, User> {
-        parent(\.userID)
-    }
+    var user: Parent<Todo, User> { parent(\.userID) }
 }
 
 /// Allows `Todo` to be used as a Fluent migration.

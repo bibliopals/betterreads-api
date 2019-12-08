@@ -41,9 +41,7 @@ final class UserToken: PostgreSQLModel {
 
 extension UserToken {
     /// Fluent relation to the user that owns this token.
-    var user: Parent<UserToken, User> {
-        parent(\.userID)
-    }
+    var user: Parent<UserToken, User> { parent(\.userID) }
 }
 
 /// Allows this model to be used as a TokenAuthenticatable's token.
@@ -52,14 +50,10 @@ extension UserToken: Token {
     typealias UserType = User
 
     /// See `Token`.
-    static var tokenKey: WritableKeyPath<UserToken, String> {
-        \.string
-    }
+    static var tokenKey: WritableKeyPath<UserToken, String> { \.string }
 
     /// See `Token`.
-    static var userIDKey: WritableKeyPath<UserToken, User.ID> {
-        \.userID
-    }
+    static var userIDKey: WritableKeyPath<UserToken, User.ID> { \.userID }
 }
 
 /// Allows `UserToken` to be used as a Fluent migration.
