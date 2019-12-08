@@ -7,16 +7,16 @@ final class User: PostgreSQLModel {
     /// User's unique identifier.
     /// Can be `nil` if the user has not been saved yet.
     var id: Int?
-    
+
     /// User's full name.
     var name: String
-    
+
     /// User's email address.
     var email: String
-    
+
     /// BCrypt hash of the user's password.
     var passwordHash: String
-    
+
     /// Creates a new `User`.
     init(id: Int? = nil, name: String, email: String, passwordHash: String) {
         self.id = id
@@ -29,14 +29,10 @@ final class User: PostgreSQLModel {
 /// Allows users to be verified by basic / password auth middleware.
 extension User: PasswordAuthenticatable {
     /// See `PasswordAuthenticatable`.
-    static var usernameKey: WritableKeyPath<User, String> {
-        return \.email
-    }
-    
+    static var usernameKey: WritableKeyPath<User, String> { \.email }
+
     /// See `PasswordAuthenticatable`.
-    static var passwordKey: WritableKeyPath<User, String> {
-        return \.passwordHash
-    }
+    static var passwordKey: WritableKeyPath<User, String> { \.passwordHash }
 }
 
 /// Allows users to be verified by bearer / token auth middleware.
@@ -49,7 +45,7 @@ extension User: TokenAuthenticatable {
 extension User: Migration {
     /// See `Migration`.
     static func prepare(on conn: PostgreSQLConnection) -> Future<Void> {
-        return PostgreSQLDatabase.create(User.self, on: conn) { builder in
+        PostgreSQLDatabase.create(User.self, on: conn) { builder in
             builder.field(for: \.id, isIdentifier: true)
             builder.field(for: \.name)
             builder.field(for: \.email)
@@ -60,7 +56,7 @@ extension User: Migration {
 }
 
 /// Allows `User` to be encoded to and decoded from HTTP messages.
-extension User: Content { }
+extension User: Content {}
 
 /// Allows `User` to be used as a dynamic parameter in route definitions.
-extension User: Parameter { }
+extension User: Parameter {}

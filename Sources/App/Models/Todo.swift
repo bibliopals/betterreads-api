@@ -5,13 +5,13 @@ import Vapor
 final class Todo: PostgreSQLModel {
     /// The unique identifier for this `Todo`.
     var id: Int?
-    
+
     /// A title describing what this `Todo` entails.
     var title: String
-    
+
     /// Reference to user that owns this TODO.
     var userID: User.ID
-    
+
     /// Creates a new `Todo`.
     init(id: Int? = nil, title: String, userID: User.ID) {
         self.id = id
@@ -22,15 +22,13 @@ final class Todo: PostgreSQLModel {
 
 extension Todo {
     /// Fluent relation to user that owns this todo.
-    var user: Parent<Todo, User> {
-        return parent(\.userID)
-    }
+    var user: Parent<Todo, User> { parent(\.userID) }
 }
 
 /// Allows `Todo` to be used as a Fluent migration.
 extension Todo: Migration {
     static func prepare(on conn: PostgreSQLConnection) -> Future<Void> {
-        return PostgreSQLDatabase.create(Todo.self, on: conn) { builder in
+        PostgreSQLDatabase.create(Todo.self, on: conn) { builder in
             builder.field(for: \.id, isIdentifier: true)
             builder.field(for: \.title)
             builder.field(for: \.userID)
@@ -40,7 +38,7 @@ extension Todo: Migration {
 }
 
 /// Allows `Todo` to be encoded to and decoded from HTTP messages.
-extension Todo: Content { }
+extension Todo: Content {}
 
 /// Allows `Todo` to be used as a dynamic parameter in route definitions.
-extension Todo: Parameter { }
+extension Todo: Parameter {}
