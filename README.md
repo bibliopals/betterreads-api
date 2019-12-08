@@ -4,7 +4,7 @@ This is the API for **BetterReads** (to be renamed, presumably 🙂). It is writ
 
 ## Developer Setup
 
-It is recommended, though not strictly required, to install [Vapor Toolbox]. With the Toolbox installed, you can generate an Xcode project with:
+It is recommended, though not strictly required, to install [Vapor Toolbox](https://docs.vapor.codes/3.0/getting-started/toolbox/). With the Toolbox installed, you can generate an Xcode project with:
 
 ```
 vapor xcode
