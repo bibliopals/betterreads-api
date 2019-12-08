@@ -1,0 +1,3 @@
+disabled_rules:
+    # SwiftFormat adds a trailing comma
+    - trailing_comma

@@ -7,6 +7,6 @@ class AppTests: XCTestCase {
     }
 
     static let allTests = [
-        ("testStub", testStub)
+        ("testStub", testStub),
     ]
 }
