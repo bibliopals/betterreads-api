@@ -10,7 +10,7 @@ import Vapor
 
 /// Bookshelf controller
 final class BookshelfController {
-    /// Return details for a single given bookshelf
+    /// Return details for a single bookshelf
     func bookshelf(_ req: Request) throws -> Future<Bookshelf> {
         let bookshelfID = try req.parameters.next(Bookshelf.ID.self)
 
@@ -24,7 +24,7 @@ final class BookshelfController {
             }
     }
 
-    /// Return book list for a given bookshelf
+    /// Return book list for a bookshelf
     func books(_ req: Request) throws -> Future<[Book]> {
         let bookshelfID = try req.parameters.next(Bookshelf.ID.self)
 
@@ -38,7 +38,7 @@ final class BookshelfController {
             }
     }
 
-    // TODO: endpoint to add a book to a bookshelf
+    /// Create a bookshelf
     func create(_ req: Request) throws -> Future<Bookshelf> {
         let user = try req.requireAuthenticated(User.self)
 
@@ -48,6 +48,7 @@ final class BookshelfController {
         }
     }
 
+    /// Add a book to a bookshelf
     func add(_ req: Request) throws -> Future<[Book]> {
         let bookshelfID = try req.parameters.next(Bookshelf.ID.self)
         let user = try req.requireAuthenticated(User.self)

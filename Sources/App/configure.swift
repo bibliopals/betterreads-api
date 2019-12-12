@@ -43,13 +43,11 @@ public func configure(_: inout Config, _ env: inout Environment, _ services: ino
     databases.enableLogging(on: .psql)
     databases.add(database: psql, as: .psql)
     services.register(databases)
-
-    /// Configure migrations
-    var migrations = MigrationConfig()
-    migrations.add(model: Book.self, database: .psql)
-    migrations.add(model: Bookshelf.self, database: .psql)
-    migrations.add(model: BookBookshelf.self, database: .psql)
-    migrations.add(model: User.self, database: .psql)
-    migrations.add(model: UserToken.self, database: .psql)
-    services.register(migrations)
+    
+    // Migrations
+    services.register { container -> MigrationConfig in
+        var migrationConfig = MigrationConfig()
+        try migrate(migrations: &migrationConfig)
+        return migrationConfig
+    }
 }

@@ -10,6 +10,7 @@ import Vapor
 
 typealias ISBN = String
 
+/// Book model
 struct Book: PostgreSQLModel {
     var id: Int?
 

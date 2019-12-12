@@ -8,6 +8,7 @@
 import FluentPostgreSQL
 import Vapor
 
+/// Bookshelf model
 struct Bookshelf: PostgreSQLModel {
     var id: Int?
 
@@ -15,17 +16,17 @@ struct Bookshelf: PostgreSQLModel {
 
     var name: String
 
-    // Whether this bookshelf is private to this user
+    /// Whether this bookshelf is private to this user
     var `private`: Bool
 }
 
 extension Bookshelf {
-    // User that owns the bookshelf
+    /// User that owns the bookshelf
     var user: Parent<Bookshelf, User> { parent(\.userID) }
 }
 
 extension Bookshelf {
-    // Books contained in bookshelf
+    /// Books contained in bookshelf
     var books: Siblings<Bookshelf, Book, BookBookshelf> { siblings() }
 }
 
