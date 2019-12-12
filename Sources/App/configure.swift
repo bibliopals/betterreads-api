@@ -51,6 +51,5 @@ public func configure(_: inout Config, _ env: inout Environment, _ services: ino
     migrations.add(model: BookBookshelf.self, database: .psql)
     migrations.add(model: User.self, database: .psql)
     migrations.add(model: UserToken.self, database: .psql)
-    migrations.add(model: Todo.self, database: .psql)
     services.register(migrations)
 }
