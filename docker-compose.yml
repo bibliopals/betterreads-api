@@ -19,5 +19,3 @@ services:
             # Temporary, for local development
             - POSTGRES_USER=postgres
             - POSTGRES_DB=postgres
-        ports:
-            - 5432:5432
