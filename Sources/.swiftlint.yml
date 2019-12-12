@@ -1,0 +1,7 @@
+disabled_rules:
+    # SwiftFormat adds a trailing comma
+    - trailing_comma
+    # Fluent requires `id` fields, so we can't follow this
+    - identifier_name
+    # TODOs are fine :)
+    - todo

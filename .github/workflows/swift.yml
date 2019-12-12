@@ -1,0 +1,23 @@
+name: Swift
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install tools
+      run: brew install swiftformat swiftlint
+    - name: Format
+      run: swiftformat . --lint
+    - name: Lint sources
+      run: cd Sources && swiftlint
+    - name: Lint tests
+      run: cd Tests && swiftlint
+    - name: Install dependencies
+      run: brew install libressl pkg-config
+    - name: Build
+      run: swift build -v
+    - name: Run tests
+      run: swift test -v
