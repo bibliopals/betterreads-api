@@ -43,9 +43,9 @@ public func configure(_: inout Config, _ env: inout Environment, _ services: ino
     databases.enableLogging(on: .psql)
     databases.add(database: psql, as: .psql)
     services.register(databases)
-    
+
     // Migrations
-    services.register { container -> MigrationConfig in
+    services.register { _ -> MigrationConfig in
         var migrationConfig = MigrationConfig()
         try migrate(migrations: &migrationConfig)
         return migrationConfig

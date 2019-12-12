@@ -5,8 +5,8 @@
 //  Created by Russell Blickhan on 12/11/19.
 //
 
-import Vapor
 import FluentPostgreSQL
+import Vapor
 
 public func migrate(migrations: inout MigrationConfig) throws {
     migrations.add(model: Book.self, database: .psql)
