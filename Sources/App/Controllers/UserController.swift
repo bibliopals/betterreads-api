@@ -12,7 +12,7 @@ final class UserController {
 
     /// Creates a new user.
     func create(_ req: Request) throws -> Future<UserResponse> {
-        // TODO return informative error if user exists
+        // TODO: return informative error if user exists
         try req.content.decode(CreateUserRequest.self).flatMap { user -> Future<User> in
             guard user.password == user.verifyPassword else {
                 throw Abort(.badRequest, reason: "Password and verification must match.")

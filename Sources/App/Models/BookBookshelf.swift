@@ -18,3 +18,5 @@ struct BookBookshelf: PostgreSQLPivot {
     var bookID: Book.ID
     var bookshelfID: Bookshelf.ID
 }
+
+extension BookBookshelf: Migration {}

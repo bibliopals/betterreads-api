@@ -23,7 +23,9 @@ public func routes(_ router: Router) throws {
     bearer.get("todos", use: todoController.index)
     bearer.post("todos", use: todoController.create)
     bearer.delete("todos", Todo.parameter, use: todoController.delete)
-    basic.get("users", User.ID.parameter, "bookshelves", use: userController.bookshelves)
+    bearer.get("users", User.ID.parameter, "bookshelves", use: userController.bookshelves)
     bearer.get("bookshelves", Bookshelf.ID.parameter, use: bookshelfController.bookshelf)
     bearer.get("bookshelves", Bookshelf.ID.parameter, "books", use: bookshelfController.books)
+    bearer.post("bookshelves", use: bookshelfController.create)
+    bearer.post("bookshelves", Bookshelf.ID.parameter, "books", use: bookshelfController.add)
 }

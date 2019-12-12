@@ -47,6 +47,8 @@ public func configure(_: inout Config, _ env: inout Environment, _ services: ino
     /// Configure migrations
     var migrations = MigrationConfig()
     migrations.add(model: Book.self, database: .psql)
+    migrations.add(model: Bookshelf.self, database: .psql)
+    migrations.add(model: BookBookshelf.self, database: .psql)
     migrations.add(model: User.self, database: .psql)
     migrations.add(model: UserToken.self, database: .psql)
     migrations.add(model: Todo.self, database: .psql)

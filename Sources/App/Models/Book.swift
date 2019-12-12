@@ -15,6 +15,8 @@ struct Book: PostgreSQLModel {
 
     var isbn: String
 
+    var title: String
+
     var description: ISBN
 }
 

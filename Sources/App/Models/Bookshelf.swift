@@ -13,6 +13,8 @@ struct Bookshelf: PostgreSQLModel {
 
     var userID: User.ID
 
+    var name: String
+
     // Whether this bookshelf is private to this user
     var `private`: Bool
 }
