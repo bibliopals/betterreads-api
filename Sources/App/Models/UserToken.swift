@@ -1,10 +1,9 @@
 import Authentication
 import Crypto
-// import FluentSQLite
 import FluentPostgreSQL
 import Vapor
 
-/// An ephermal authentication token that identifies a registered user.
+/// Ephemeral authentication token for a `User`
 final class UserToken: PostgreSQLModel {
     /// Creates a new `UserToken` for a given user.
     static func create(userID: User.ID) throws -> UserToken {

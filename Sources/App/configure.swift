@@ -44,11 +44,10 @@ public func configure(_: inout Config, _ env: inout Environment, _ services: ino
     databases.add(database: psql, as: .psql)
     services.register(databases)
 
-    /// Configure migrations
-    var migrations = MigrationConfig()
-    migrations.add(model: Book.self, database: .psql)
-    migrations.add(model: User.self, database: .psql)
-    migrations.add(model: UserToken.self, database: .psql)
-    migrations.add(model: Todo.self, database: .psql)
-    services.register(migrations)
+    // Migrations
+    services.register { _ -> MigrationConfig in
+        var migrationConfig = MigrationConfig()
+        try migrate(migrations: &migrationConfig)
+        return migrationConfig
+    }
 }
