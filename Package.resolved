@@ -84,20 +84,20 @@
       },
       {
         "package": "Graphiti",
-        "repositoryURL": "https://github.com/GraphQLSwift/Graphiti.git",
+        "repositoryURL": "https://github.com/alexsteinerde/Graphiti.git",
         "state": {
           "branch": null,
-          "revision": "1fbebadba9961f16dec54156a7bc6ce9297a08a0",
-          "version": "0.11.0"
+          "revision": "a44c615d9f1632fe403d7c9721d33cc7ce684b4c",
+          "version": "0.12.1"
         }
       },
       {
         "package": "GraphQL",
-        "repositoryURL": "https://github.com/GraphQLSwift/GraphQL.git",
+        "repositoryURL": "https://github.com/alexsteinerde/GraphQL.git",
         "state": {
-          "branch": "master",
-          "revision": "91b14d7663913ec165145c2bc894e5d60d2961b2",
-          "version": null
+          "branch": null,
+          "revision": "be0d2940c1a91e8b6f4de091a27c12d0f513d83f",
+          "version": "0.12.1"
         }
       },
       {
