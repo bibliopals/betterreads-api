@@ -14,8 +14,7 @@ let package = Package(
         .package(url: "https://github.com/vapor/auth.git", from: "2.0.4"),
 
         // GraphQL
-        .package(url: "https://github.com/GraphQLSwift/Graphiti.git", from: "0.11.0"),
-        .package(url: "https://github.com/GraphQLSwift/GraphQL.git", .branchItem("master"))
+        .package(url: "https://github.com/alexsteinerde/Graphiti.git", from: "0.12.0"),
     ],
     targets: [
         .target(name: "App", dependencies: ["Authentication", "FluentPostgreSQL", "Graphiti", "Vapor"]),
