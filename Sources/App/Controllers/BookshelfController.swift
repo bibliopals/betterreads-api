@@ -15,9 +15,9 @@ final class BookshelfController {
         let bookshelfID = try req.parameters.next(Bookshelf.ID.self)
 
         return Bookshelf.query(on: req)
-            .filter(\.id == bookshelfID).first().map { bookshelf in
-                guard let bookshelf = bookshelf else { throw Abort(.notFound) }
-
+            .filter(\.id == bookshelfID).first()
+            .unwrap(or: Abort(.notFound))
+            .map { bookshelf in
                 guard try bookshelf.isVisible(for: req) else { throw Abort(.unauthorized) }
 
                 return bookshelf
@@ -29,9 +29,9 @@ final class BookshelfController {
         let bookshelfID = try req.parameters.next(Bookshelf.ID.self)
 
         return Bookshelf.query(on: req)
-            .filter(\.id == bookshelfID).first().flatMap { bookshelf in
-                guard let bookshelf = bookshelf else { throw Abort(.notFound) }
-
+            .filter(\.id == bookshelfID).first()
+            .unwrap(or: Abort(.notFound))
+            .flatMap { bookshelf in
                 guard try bookshelf.isVisible(for: req) else { throw Abort(.unauthorized) }
 
                 return try bookshelf.books.query(on: req).all()
@@ -54,8 +54,8 @@ final class BookshelfController {
         let user = try req.requireAuthenticated(User.self)
 
         return Bookshelf.query(on: req).filter(\.id == bookshelfID).first()
+            .unwrap(or: Abort(.notFound))
             .flatMap { bookshelf in
-                guard let bookshelf = bookshelf else { throw Abort(.notFound) }
                 guard bookshelf.userID == user.id else { throw Abort(.unauthorized) }
 
                 return try bookshelf.books.query(on: req).all()
