@@ -15,6 +15,7 @@ let package = Package(
 
         // GraphQL
         .package(url: "https://github.com/GraphQLSwift/Graphiti.git", from: "0.11.0"),
+        .package(url: "https://github.com/GraphQLSwift/GraphQL.git", .branchItem("master"))
     ],
     targets: [
         .target(name: "App", dependencies: ["Authentication", "FluentPostgreSQL", "Graphiti", "Vapor"]),
