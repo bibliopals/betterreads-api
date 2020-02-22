@@ -12,9 +12,12 @@ let package = Package(
 
         // 👤 Authentication and Authorization layer for Fluent.
         .package(url: "https://github.com/vapor/auth.git", from: "2.0.4"),
+        
+        // GraphQL
+        .package(url: "https://github.com/GraphQLSwift/Graphiti.git", from: "0.11.0"),
     ],
     targets: [
-        .target(name: "App", dependencies: ["Authentication", "FluentPostgreSQL", "Vapor"]),
+        .target(name: "App", dependencies: ["Authentication", "FluentPostgreSQL", "Graphiti", "Vapor"]),
         .target(name: "Run", dependencies: ["App"]),
         .testTarget(name: "AppTests", dependencies: ["App"]),
     ]
