@@ -1,5 +1,7 @@
 import Authentication
 import FluentPostgreSQL
+import GraphQLKit
+import GraphiQLVapor
 import Vapor
 
 /// Called before your application initializes.
@@ -10,7 +12,13 @@ public func configure(_: inout Config, _ env: inout Environment, _ services: ino
 
     // Register routes to the router
     let router = EngineRouter.default()
-    try routes(router)
+//    try routes(router)
+    router.register(graphQLSchema: schema, withResolver: BetterreadsAPI())
+    
+    if !env.isRelease {
+        router.enableGraphiQL()
+    }
+
     services.register(router, as: Router.self)
 
     // Register middleware

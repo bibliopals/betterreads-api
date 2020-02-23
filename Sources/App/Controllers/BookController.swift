@@ -6,12 +6,13 @@
 //
 
 import FluentPostgreSQL
+import Graphiti
 import Vapor
 
 /// Books controller
 final class BookController {
     /// Return a list of all books
-    func index(_ req: Request) throws -> Future<[Book]> {
+    func index(req: Request, _: NoArguments) throws -> Future<[Book]> {
         // TODO: this should be paginated :)
         Book.query(on: req).all()
     }

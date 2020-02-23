@@ -25,18 +25,18 @@ final class BookshelfController {
     }
 
     /// Return book list for a bookshelf
-    func books(_ req: Request) throws -> Future<[Book]> {
-        let bookshelfID = try req.parameters.next(Bookshelf.ID.self)
-
-        return Bookshelf.query(on: req)
-            .filter(\.id == bookshelfID).first()
-            .unwrap(or: Abort(.notFound))
-            .flatMap { bookshelf in
-                guard try bookshelf.isVisible(for: req) else { throw Abort(.unauthorized) }
-
-                return try bookshelf.books.query(on: req).all()
-            }
-    }
+//    func books(_ req: Request) throws -> Future<[Book]> {
+//        let bookshelfID = try req.parameters.next(Bookshelf.ID.self)
+//
+//        return Bookshelf.query(on: req)
+//            .filter(\.id == bookshelfID).first()
+//            .unwrap(or: Abort(.notFound))
+//            .flatMap { bookshelf in
+//                guard try bookshelf.isVisible(for: req) else { throw Abort(.unauthorized) }
+//
+//                return try bookshelf.books.query(on: req).all()
+//            }
+//    }
 
     /// Create a bookshelf
     func create(_ req: Request) throws -> Future<Bookshelf> {
@@ -49,18 +49,18 @@ final class BookshelfController {
     }
 
     /// Add a book to a bookshelf
-    func add(_ req: Request) throws -> Future<[Book]> {
-        let bookshelfID = try req.parameters.next(Bookshelf.ID.self)
-        let user = try req.requireAuthenticated(User.self)
-
-        return Bookshelf.query(on: req).filter(\.id == bookshelfID).first()
-            .unwrap(or: Abort(.notFound))
-            .flatMap { bookshelf in
-                guard bookshelf.userID == user.id else { throw Abort(.unauthorized) }
-
-                return try bookshelf.books.query(on: req).all()
-            }
-    }
+//    func add(_ req: Request) throws -> Future<[Book]> {
+//        let bookshelfID = try req.parameters.next(Bookshelf.ID.self)
+//        let user = try req.requireAuthenticated(User.self)
+//
+//        return Bookshelf.query(on: req).filter(\.id == bookshelfID).first()
+//            .unwrap(or: Abort(.notFound))
+//            .flatMap { bookshelf in
+//                guard bookshelf.userID == user.id else { throw Abort(.unauthorized) }
+//
+//                return try bookshelf.books.query(on: req).all()
+//            }
+//    }
 }
 
 struct CreateBookshelfRequest: Content {

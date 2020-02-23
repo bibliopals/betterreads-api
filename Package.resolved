@@ -83,6 +83,15 @@
         }
       },
       {
+        "package": "GraphiQLVapor",
+        "repositoryURL": "https://github.com/alexsteinerde/graphiql-vapor.git",
+        "state": {
+          "branch": null,
+          "revision": "b16261bae80ee850bb59e39143eb08bbb63e07e1",
+          "version": "1.0.0"
+        }
+      },
+      {
         "package": "Graphiti",
         "repositoryURL": "https://github.com/alexsteinerde/Graphiti.git",
         "state": {
@@ -98,6 +107,15 @@
           "branch": null,
           "revision": "be0d2940c1a91e8b6f4de091a27c12d0f513d83f",
           "version": "0.12.1"
+        }
+      },
+      {
+        "package": "GraphQLKit",
+        "repositoryURL": "https://github.com/alexsteinerde/graphql-kit.git",
+        "state": {
+          "branch": null,
+          "revision": "986e46f46daaa187de66a8194ee3a2614ca4538a",
+          "version": "1.0.0-beta.2"
         }
       },
       {
