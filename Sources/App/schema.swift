@@ -20,10 +20,10 @@ let schema = Schema<BetterreadsAPI, Request>([
         Field(.books, at: Bookshelf.books),
         Field(.id, at: \.id),
         Field(.name, at: \.name),
-        Field(.private, at: \.private)
+        Field(.private, at: \.private),
     ])
         .description("A user's bookshelf."),
-    
+
     Type(User.self, fields: [
         Field(.bookshelves, at: User.bookshelves),
         Field(.email, at: \.email),

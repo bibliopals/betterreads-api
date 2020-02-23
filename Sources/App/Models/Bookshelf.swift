@@ -34,7 +34,7 @@ extension Bookshelf: Migration {}
 
 extension Bookshelf: FieldKeyProvider {
     typealias FieldKey = FieldKeys
-    
+
     enum FieldKeys: String {
         case books
         case id

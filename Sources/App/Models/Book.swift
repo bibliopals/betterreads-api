@@ -23,7 +23,7 @@ extension Book: Migration {}
 
 extension Book: FieldKeyProvider {
     typealias FieldKey = FieldKeys
-    
+
     enum FieldKeys: String {
         case isbn
         case title

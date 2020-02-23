@@ -41,7 +41,7 @@ extension User: Migration {
 
 extension User: FieldKeyProvider {
     typealias FieldKey = FieldKeys
-    
+
     enum FieldKeys: String {
         case bookshelves
         case email

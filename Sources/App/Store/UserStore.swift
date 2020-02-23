@@ -14,13 +14,13 @@ final class UserStore {
             .filter(\.id == id).first()
             .unwrap(or: Abort(.notFound))
     }
-    
+
     static func bookshelves(userID: Int?, req: Request) throws -> Future<[Bookshelf]> {
         guard let userID = userID else { throw Abort(.notFound) }
         return Bookshelf.query(on: req)
             .filter(\.userID == userID).all()
             .map { bookshelves in
                 try bookshelves.filter { try $0.isVisible(for: req) }
-        }
+            }
     }
 }

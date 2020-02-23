@@ -5,7 +5,6 @@
 //  Created by Russell Blickhan on 2/22/20.
 //
 
-
 import FluentPostgreSQL
 import Vapor
 

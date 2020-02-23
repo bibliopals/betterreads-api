@@ -1,7 +1,7 @@
 import Authentication
 import FluentPostgreSQL
-import GraphQLKit
 import GraphiQLVapor
+import GraphQLKit
 import Vapor
 
 /// Called before your application initializes.
@@ -14,7 +14,7 @@ public func configure(_: inout Config, _ env: inout Environment, _ services: ino
     let router = EngineRouter.default()
 //    try routes(router)
     router.register(graphQLSchema: schema, withResolver: BetterreadsAPI())
-    
+
     if !env.isRelease {
         router.enableGraphiQL()
     }
