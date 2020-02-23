@@ -1,7 +1,6 @@
 import Authentication
 import Crypto
 import FluentPostgreSQL
-import Vapor
 
 /// Ephemeral authentication token for a `User`
 final class UserToken: PostgreSQLModel {
@@ -69,8 +68,4 @@ extension UserToken: Migration {
     }
 }
 
-/// Allows `UserToken` to be encoded to and decoded from HTTP messages.
 extension UserToken: Content {}
-
-/// Allows `UserToken` to be used as a dynamic parameter in route definitions.
-extension UserToken: Parameter {}

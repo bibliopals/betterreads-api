@@ -6,21 +6,15 @@
 //
 
 import FluentPostgreSQL
-import Vapor
 
 typealias ISBN = String
 
-/// Book model
-struct Book: PostgreSQLModel {
+struct Book: PostgreSQLModel, Codable {
+    /// Not intended to be exposed.
     var id: Int?
-
-    var isbn: String
-
+    var isbn: ISBN
     var title: String
-
-    var description: ISBN
+    var description: String
 }
 
 extension Book: Migration {}
-
-extension Book: Content {}

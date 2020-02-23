@@ -29,6 +29,15 @@
         }
       },
       {
+        "package": "CRuntime",
+        "repositoryURL": "https://github.com/wickwirew/CRuntime.git",
+        "state": {
+          "branch": null,
+          "revision": "95f911318d8c885f6fc05e971471f94adfd39405",
+          "version": "2.1.2"
+        }
+      },
+      {
         "package": "Crypto",
         "repositoryURL": "https://github.com/vapor/crypto.git",
         "state": {
@@ -74,12 +83,48 @@
         }
       },
       {
+        "package": "GraphiQLVapor",
+        "repositoryURL": "https://github.com/alexsteinerde/graphiql-vapor.git",
+        "state": {
+          "branch": null,
+          "revision": "b16261bae80ee850bb59e39143eb08bbb63e07e1",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "Graphiti",
+        "repositoryURL": "https://github.com/alexsteinerde/Graphiti.git",
+        "state": {
+          "branch": null,
+          "revision": "a44c615d9f1632fe403d7c9721d33cc7ce684b4c",
+          "version": "0.12.1"
+        }
+      },
+      {
+        "package": "GraphQL",
+        "repositoryURL": "https://github.com/alexsteinerde/GraphQL.git",
+        "state": {
+          "branch": null,
+          "revision": "be0d2940c1a91e8b6f4de091a27c12d0f513d83f",
+          "version": "0.12.1"
+        }
+      },
+      {
+        "package": "GraphQLKit",
+        "repositoryURL": "https://github.com/alexsteinerde/graphql-kit.git",
+        "state": {
+          "branch": null,
+          "revision": "986e46f46daaa187de66a8194ee3a2614ca4538a",
+          "version": "1.0.0-beta.2"
+        }
+      },
+      {
         "package": "HTTP",
         "repositoryURL": "https://github.com/vapor/http.git",
         "state": {
           "branch": null,
-          "revision": "3808ed0401379b6e9f4a053f03090ea9d658caa9",
-          "version": "3.2.1"
+          "revision": "fba1329cd430e2f9a3f995b317b04f268d8b2978",
+          "version": "3.3.2"
         }
       },
       {
@@ -107,6 +152,15 @@
           "branch": null,
           "revision": "d76f339c9716785e5079af9d7075d28ff7da3d92",
           "version": "3.1.0"
+        }
+      },
+      {
+        "package": "Runtime",
+        "repositoryURL": "https://github.com/wickwirew/Runtime.git",
+        "state": {
+          "branch": null,
+          "revision": "61c9776f47d2951bdc562486ad348e5e1ca2e180",
+          "version": "2.1.1"
         }
       },
       {
@@ -141,8 +195,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio.git",
         "state": {
           "branch": null,
-          "revision": "ba7970fe396e8198b84c6c1b44b38a1d4e2eb6bd",
-          "version": "1.14.1"
+          "revision": "8da5c5a4e6c5084c296b9f39dc54f00be146e0fa",
+          "version": "1.14.2"
         }
       },
       {
@@ -186,8 +240,8 @@
         "repositoryURL": "https://github.com/vapor/url-encoded-form.git",
         "state": {
           "branch": null,
-          "revision": "82d8d63bdb76b6dd8febe916c639ab8608dbbaed",
-          "version": "1.0.6"
+          "revision": "44999b47d88ca2e0c0b893599b3240e342ba39ff",
+          "version": "1.0.7"
         }
       },
       {
@@ -204,8 +258,8 @@
         "repositoryURL": "https://github.com/vapor/vapor.git",
         "state": {
           "branch": null,
-          "revision": "92a58a9a84e4330500b99fe355a94d29f67abe58",
-          "version": "3.3.1"
+          "revision": "642f3d4d1f0eafad651c85524d0d1c698b55399f",
+          "version": "3.3.3"
         }
       },
       {

@@ -1,5 +1,7 @@
 import Authentication
 import FluentPostgreSQL
+import GraphiQLVapor
+import GraphQLKit
 import Vapor
 
 /// Called before your application initializes.
@@ -10,7 +12,20 @@ public func configure(_: inout Config, _ env: inout Environment, _ services: ino
 
     // Register routes to the router
     let router = EngineRouter.default()
-    try routes(router)
+
+    let basic = router.grouped(User.basicAuthMiddleware(using: BCryptDigest()))
+    basic.post("login") { (req) -> Future<UserToken> in
+        let user = try req.requireAuthenticated(User.self)
+        return try UserToken.create(userID: user.requireID()).save(on: req)
+    }
+
+    let bearer = router.grouped(User.tokenAuthMiddleware())
+    bearer.register(graphQLSchema: schema, withResolver: BetterreadsAPI())
+
+    if !env.isRelease {
+        router.enableGraphiQL()
+    }
+
     services.register(router, as: Router.self)
 
     // Register middleware

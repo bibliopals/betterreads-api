@@ -1,15 +1,10 @@
 import Authentication
 import FluentPostgreSQL
-import Vapor
 
-/// User model
-final class User: PostgreSQLModel {
+final class User: PostgreSQLModel, Codable {
     var id: Int?
-
     var name: String
-
     var email: String
-
     var passwordHash: String
 
     init(id: Int? = nil, name: String, email: String, passwordHash: String) {
@@ -41,9 +36,3 @@ extension User: Migration {
         }
     }
 }
-
-/// Allows `User` to be encoded to and decoded from HTTP messages.
-extension User: Content {}
-
-/// Allows `User` to be used as a dynamic parameter in route definitions.
-extension User: Parameter {}
