@@ -12,7 +12,7 @@ import Vapor
 struct Bookshelf: PostgreSQLModel, Codable {
     var id: Int?
     var userID: User.ID
-    var name: String
+    var title: String
     /// Whether this bookshelf is private to this user
     var `private`: Bool
 }
@@ -38,7 +38,7 @@ extension Bookshelf: FieldKeyProvider {
     enum FieldKeys: String {
         case books
         case id
-        case name
+        case title
         case `private`
     }
 }
@@ -46,7 +46,7 @@ extension Bookshelf: FieldKeyProvider {
 // MARK: Resolvers
 
 extension Bookshelf {
-    func books(req: Request, _: NoArguments) throws -> [Book] {
-        try BookshelfStore.books(on: self, req: req).wait()
+    func books(req: Request, _: NoArguments) throws -> Future<[Book]> {
+        try BookshelfStore.books(on: self, req: req)
     }
 }

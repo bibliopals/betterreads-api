@@ -53,7 +53,7 @@ extension User: FieldKeyProvider {
 // MARK: Resolvers
 
 extension User {
-    func bookshelves(req: Request, _: NoArguments) throws -> [Bookshelf] {
-        try UserStore.bookshelves(userID: id, req: req).wait()
+    func bookshelves(req: Request, _: NoArguments) throws -> Future<[Bookshelf]> {
+        try UserStore.bookshelves(userID: id, req: req)
     }
 }
