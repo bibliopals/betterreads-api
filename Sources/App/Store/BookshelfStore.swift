@@ -14,12 +14,12 @@ final class BookshelfStore {
         let books: Siblings<Bookshelf, Book, BookBookshelf> = bookshelf.siblings()
         return try books.query(on: req).all()
     }
-    
+
     static func create(title: String, private: Bool, req: Request) throws -> Future<Bookshelf> {
         let user = try req.requireAuthenticated(User.self)
         return try Bookshelf(userID: user.requireID(), title: title, private: `private`).save(on: req)
     }
-    
+
     static func bookshelf(id: Int, req: Request) throws -> Future<Bookshelf> {
         Bookshelf.query(on: req)
             .filter(\.id == id).first()
@@ -27,6 +27,6 @@ final class BookshelfStore {
             .map { bookshelf in
                 guard try bookshelf.isVisible(for: req) else { throw Abort(.unauthorized) }
                 return bookshelf
-        }
+            }
     }
 }

@@ -24,19 +24,20 @@ final class UserStore {
                 try bookshelves.filter { try $0.isVisible(for: req) }
             }
     }
-    
+
     static func create(
         name: String,
         email: String,
         password: String,
         verifyPassword: String,
-        req: Request) throws -> Future<User> {
+        req: Request
+    ) throws -> Future<User> {
         guard password == verifyPassword else {
             throw Abort(.badRequest, reason: "Password and verification must match.")
         }
-        
+
         let hash = try BCrypt.hash(password)
-        
+
         return User(id: nil, name: name, email: email, passwordHash: hash).save(on: req)
     }
 }

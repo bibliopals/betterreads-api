@@ -15,7 +15,7 @@ let schema = Schema<BetterreadsAPI, Request>([
         Field(.description, at: \.description),
     ])
         .description("An individual book."),
-    
+
     Type(Bookshelf.self, fields: [
         Field(.books, with: Bookshelf.books),
         Field(.id, at: \.id),
@@ -23,7 +23,7 @@ let schema = Schema<BetterreadsAPI, Request>([
         Field(.private, at: \.private),
     ])
         .description("A user's bookshelf."),
-    
+
     Type(User.self, fields: [
         Field(.bookshelves, with: User.bookshelves),
         Field(.email, at: \.email),
@@ -31,7 +31,7 @@ let schema = Schema<BetterreadsAPI, Request>([
         Field(.name, at: \.name),
     ])
         .description("A user."),
-    
+
     Query([
         Field(.book, with: BetterreadsAPI.book)
             .argument(.isbn, at: \.isbn)
@@ -41,9 +41,9 @@ let schema = Schema<BetterreadsAPI, Request>([
             .description("Retrieve data for a single user."),
         Field(.bookshelf, with: BetterreadsAPI.bookshelf)
             .argument(.bookshelfID, at: \.bookshelfID)
-            .description("Retrieve data for a single bookshelf, if visible.")
+            .description("Retrieve data for a single bookshelf, if visible."),
     ]),
-    
+
     Mutation([
         Field(.createUser, with: BetterreadsAPI.createUser)
             .argument(.name, at: \.name)
@@ -54,6 +54,6 @@ let schema = Schema<BetterreadsAPI, Request>([
         Field(.createBookshelf, with: BetterreadsAPI.createBookshelf)
             .argument(.title, at: \.title)
             .argument(.private, at: \.private)
-            .description("Create a new bookshelf for the currently logged-in user.")
-    ])
+            .description("Create a new bookshelf for the currently logged-in user."),
+    ]),
 ])

@@ -12,7 +12,7 @@ public func configure(_: inout Config, _ env: inout Environment, _ services: ino
 
     // Register routes to the router
     let router = EngineRouter.default()
-    
+
     let basic = router.grouped(User.basicAuthMiddleware(using: BCryptDigest()))
     basic.post("login") { (req) -> Future<UserToken> in
         let user = try req.requireAuthenticated(User.self)
