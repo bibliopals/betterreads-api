@@ -30,3 +30,9 @@ final class BookshelfStore {
             }
     }
 }
+
+extension Bookshelf {
+    func isVisible(for req: Request) throws -> Bool {
+        try !`private` || req.requireAuthenticated(User.self).id == userID
+    }
+}

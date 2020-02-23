@@ -1,7 +1,6 @@
 import Authentication
 import Crypto
 import FluentPostgreSQL
-import Vapor
 
 /// Ephemeral authentication token for a `User`
 final class UserToken: PostgreSQLModel {

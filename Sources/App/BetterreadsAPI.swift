@@ -8,6 +8,7 @@
 import Graphiti
 import Vapor
 
+/// Top-level GraphQL API keys and resolvers.
 struct BetterreadsAPI: FieldKeyProvider {
     typealias FieldKey = FieldKeys
 

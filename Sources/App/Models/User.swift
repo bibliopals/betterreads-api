@@ -1,7 +1,5 @@
 import Authentication
 import FluentPostgreSQL
-import Graphiti
-import Vapor
 
 final class User: PostgreSQLModel, Codable {
     var id: Int?
@@ -36,24 +34,5 @@ extension User: Migration {
             builder.field(for: \.passwordHash)
             builder.unique(on: \.email)
         }
-    }
-}
-
-extension User: FieldKeyProvider {
-    typealias FieldKey = FieldKeys
-
-    enum FieldKeys: String {
-        case bookshelves
-        case email
-        case id
-        case name
-    }
-}
-
-// MARK: Resolvers
-
-extension User {
-    func bookshelves(req: Request, _: NoArguments) throws -> Future<[Bookshelf]> {
-        try UserStore.bookshelves(userID: id, req: req)
     }
 }

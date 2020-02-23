@@ -6,27 +6,15 @@
 //
 
 import FluentPostgreSQL
-import Graphiti
-import Vapor
 
 typealias ISBN = String
 
 struct Book: PostgreSQLModel, Codable {
+    /// Not intended to be exposed.
     var id: Int?
-
-    var isbn: String
+    var isbn: ISBN
     var title: String
-    var description: ISBN
+    var description: String
 }
 
 extension Book: Migration {}
-
-extension Book: FieldKeyProvider {
-    typealias FieldKey = FieldKeys
-
-    enum FieldKeys: String {
-        case isbn
-        case title
-        case description
-    }
-}

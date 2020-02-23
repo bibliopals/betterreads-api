@@ -6,8 +6,6 @@
 //
 
 import FluentPostgreSQL
-import Graphiti
-import Vapor
 
 struct Bookshelf: PostgreSQLModel, Codable {
     var id: Int?
@@ -17,36 +15,4 @@ struct Bookshelf: PostgreSQLModel, Codable {
     var `private`: Bool
 }
 
-extension Bookshelf {
-    /// User that owns the bookshelf
-    var user: Parent<Bookshelf, User> { parent(\.userID) }
-}
-
-extension Bookshelf {
-    func isVisible(for req: Request) throws -> Bool {
-        try !`private` || req.requireAuthenticated(User.self).id == userID
-    }
-}
-
 extension Bookshelf: Migration {}
-
-// MARK: Field Keys
-
-extension Bookshelf: FieldKeyProvider {
-    typealias FieldKey = FieldKeys
-
-    enum FieldKeys: String {
-        case books
-        case id
-        case title
-        case `private`
-    }
-}
-
-// MARK: Resolvers
-
-extension Bookshelf {
-    func books(req: Request, _: NoArguments) throws -> Future<[Book]> {
-        try BookshelfStore.books(on: self, req: req)
-    }
-}
