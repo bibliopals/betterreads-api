@@ -11,8 +11,7 @@ import Vapor
 final class BookshelfStore {
     static func books(on bookshelf: Bookshelf, req: Request) throws -> Future<[Book]> {
         guard try bookshelf.isVisible(for: req) else { throw Abort(.unauthorized) }
-        let books: Siblings<Bookshelf, Book, BookBookshelf> = bookshelf.siblings()
-        return try books.query(on: req).all()
+        return try bookshelf.shelvedBooks.query(on: req).all()
     }
 
     static func create(title: String, private: Bool, req: Request) throws -> Future<Bookshelf> {
@@ -28,6 +27,22 @@ final class BookshelfStore {
                 guard try bookshelf.isVisible(for: req) else { throw Abort(.unauthorized) }
                 return bookshelf
             }
+    }
+
+    static func add(_ book: Book, to bookshelf: Bookshelf, req: Request) throws -> Future<[Book]> {
+        let user = try req.requireAuthenticated(User.self)
+        guard bookshelf.userID == user.id else { throw Abort(.unauthorized) }
+
+        return bookshelf.shelvedBooks.attach(book, on: req)
+            .flatMap { _ in try bookshelf.shelvedBooks.query(on: req).all() }
+    }
+
+    static func remove(_ book: Book, from bookshelf: Bookshelf, req: Request) throws -> Future<[Book]> {
+        let user = try req.requireAuthenticated(User.self)
+        guard bookshelf.userID == user.id else { throw Abort(.unauthorized) }
+
+        return bookshelf.shelvedBooks.detach(book, on: req)
+            .flatMap { _ in try bookshelf.shelvedBooks.query(on: req).all() }
     }
 }
 

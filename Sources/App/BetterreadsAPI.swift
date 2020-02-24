@@ -32,6 +32,8 @@ struct BetterreadsAPI: FieldKeyProvider {
         // Mutations
         case createUser
         case createBookshelf
+        case addBook
+        case removeBook
     }
 
     // MARK: Queries
@@ -87,5 +89,27 @@ struct BetterreadsAPI: FieldKeyProvider {
 
     func createBookshelf(req: Request, args: CreateBookshelfArguments) throws -> Future<Bookshelf> {
         try BookshelfStore.create(title: args.title, private: args.private, req: req)
+    }
+
+    struct AddBookArguments: Codable {
+        let isbn: String
+        let bookshelfID: Int
+    }
+
+    func addBook(req: Request, args: AddBookArguments) throws -> Future<[Book]> {
+        try BookStore.book(isbn: args.isbn, req: req)
+            .and(BookshelfStore.bookshelf(id: args.bookshelfID, req: req))
+            .flatMap { try BookshelfStore.add($0.0, to: $0.1, req: req) }
+    }
+
+    struct DeleteBookArguments: Codable {
+        let isbn: String
+        let bookshelfID: Int
+    }
+
+    func removeBook(req: Request, args: DeleteBookArguments) throws -> Future<[Book]> {
+        try BookStore.book(isbn: args.isbn, req: req)
+            .and(BookshelfStore.bookshelf(id: args.bookshelfID, req: req))
+            .flatMap { try BookshelfStore.remove($0.0, from: $0.1, req: req) }
     }
 }

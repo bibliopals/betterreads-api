@@ -55,5 +55,13 @@ let schema = Schema<BetterreadsAPI, Request>([
             .argument(.title, at: \.title)
             .argument(.private, at: \.private)
             .description("Create a new bookshelf for the currently logged-in user."),
+        Field(.addBook, with: BetterreadsAPI.addBook)
+            .argument(.isbn, at: \.isbn)
+            .argument(.bookshelfID, at: \.bookshelfID)
+            .description("Add a book to a bookshelf."),
+        Field(.removeBook, with: BetterreadsAPI.removeBook)
+            .argument(.isbn, at: \.isbn)
+            .argument(.bookshelfID, at: \.bookshelfID)
+            .description("Remove a book from a bookshelf."),
     ]),
 ])

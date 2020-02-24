@@ -19,4 +19,11 @@ struct BookBookshelf: PostgreSQLPivot {
     var bookshelfID: Bookshelf.ID
 }
 
+extension BookBookshelf: ModifiablePivot {
+    init(_ book: Book, _ bookshelf: Bookshelf) throws {
+        bookID = try book.requireID()
+        bookshelfID = try bookshelf.requireID()
+    }
+}
+
 extension BookBookshelf: Migration {}
