@@ -26,3 +26,5 @@ docker-compose up --build -d
 ```
 
 When running with Xcode, you can also run Postgres on your own; development builds expect it to be running on `127.0.0.1:5432` with a user named `postgres`.
+
+BetterReads exposes GraphiQL for development purposes. In development mode, simply go to `localhost:8080` to access it.
