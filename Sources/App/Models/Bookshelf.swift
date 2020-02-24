@@ -15,4 +15,12 @@ struct Bookshelf: PostgreSQLModel, Codable {
     var `private`: Bool
 }
 
+extension Bookshelf {
+    var user: Parent<Bookshelf, User> { parent(\.userID) }
+}
+
+extension Bookshelf {
+    var shelvedBooks: Siblings<Bookshelf, Book, BookBookshelf> { siblings() }
+}
+
 extension Bookshelf: Migration {}
